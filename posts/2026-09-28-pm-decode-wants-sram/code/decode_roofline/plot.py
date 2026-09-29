@@ -16,12 +16,12 @@ from .chips import B200_BF16, WSE3
 from .model import QWEN2_5_72B
 from .roofline import batch_at_ridge, decode_step, intensity_limit
 
-INK, SURFACE, RULE, MUTED, PAPER, AMBER = "#0b0c0f", "#14161b", "#2a2d34", "#9a978f", "#f3efe6", "#f0b429"
+INK, SURFACE, RULE, MUTED, PAPER, ACCENT = "#0b0c0f", "#14161b", "#2a2d34", "#9a978f", "#f3efe6", "#7cc4fa"
 W, H = 1600, 900
 X0, X1, Y0, Y1 = 260, 1500, 215, 690          # plot area (pixels)
 BMIN, BMAX = 1, 4096                          # batch axis (log2)
 IMIN, IMAX = 1.0, 1000.0                      # intensity axis (log10)
-CONTEXTS = [(512, PAPER, "512-token context"), (4096, AMBER, "4,096-token context"), (32768, MUTED, "32,768-token context")]
+CONTEXTS = [(512, PAPER, "512-token context"), (4096, ACCENT, "4,096-token context"), (32768, MUTED, "32,768-token context")]
 OUT = Path(__file__).resolve().parents[2] / "image.svg"
 
 
@@ -79,15 +79,15 @@ def main() -> None:
         parts.append(text(x, y - 10, label, 20, PAPER, 500, True, anchor))
     # curves
     for ctx, color, label in CONTEXTS:
-        width = 4 if color == AMBER else 3
+        width = 4 if color == ACCENT else 3
         parts.append(f'<polyline points="{curve(ctx)}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linejoin="round"/>')
     # curve labels at the right edge: 512 above its curve, the others below
     for ctx, color, label in CONTEXTS:
         i_end = decode_step(QWEN2_5_72B, BMAX, ctx).intensity
         dy = -14 if ctx == 512 else 30
-        parts.append(text(X1 - 8, y_of(i_end) + dy, label, 20, PAPER if color == AMBER else color, 500, False, "end"))
-    # the pointer: the 4k plateau, written under the amber curve
-    parts.append(text(X0 + 20, y_of(lim4k) - 14, f"4,096 tokens: tops out at {lim4k:.0f} FLOP/byte, below the ridge at any batch", 22, AMBER, 600))
+        parts.append(text(X1 - 8, y_of(i_end) + dy, label, 20, PAPER if color == ACCENT else color, 500, False, "end"))
+    # the pointer: the 4k plateau, written under the accent curve
+    parts.append(text(X0 + 20, y_of(lim4k) - 14, f"4,096 tokens: tops out at {lim4k:.0f} FLOP/byte, below the ridge at any batch", 22, ACCENT, 600))
     # the crossing at 512 context
     if b512 is not None:
         x, y = x_of(b512), y_of(B200_BF16.ridge)
@@ -97,7 +97,7 @@ def main() -> None:
     parts.append(text(80, 800, "bytes = weights once per step + KV once per sequence; FLOPs = 2 per weight + attention over the context", 20, MUTED, 400, True))
     parts.append(text(80, 828, "B200 per GPU from NVIDIA DGX/HGX B200 pages (dense = sparse/2); WSE-3 as listed by Cerebras", 20, MUTED, 400, True))
     parts.append(text(80, 856, "Qwen2.5-72B-Instruct: 72.7B params, 80 layers, 8 KV heads, 320 KiB KV/token", 20, MUTED, 400, True))
-    parts.append(text(1520, 856, "research · github.com/antje/research", 20, MUTED, 400, True, "end"))
+    parts.append(text(1520, 856, "github.com/antje/research", 20, MUTED, 400, True, "end"))
     parts.append("</svg>")
     OUT.write_text("\n".join(parts) + "\n", encoding="utf-8")
     print(f"wrote {OUT}")

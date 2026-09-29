@@ -1,6 +1,6 @@
 # Decode wants SRAM: a roofline you can run on your laptop
 
-![Decode arithmetic intensity against batch size, with the B200 and WSE-3 ridge lines](image.png)
+![Decode arithmetic intensity against batch size, with the B200 and WSE-3 ridge lines](images/b.png)
 
 Gimlet Labs announced today that it is adding Cerebras wafer-scale chips to its inference cloud: a plan for 100 megawatts of capacity, and speeds of up to 3,000 tokens per second. The number I want to explain is a different one: why a chip with 44 GB of memory earns a place next to GPUs that carry 180 GB. The answer is a roofline, and it takes a few lines of Python to compute.
 
@@ -37,6 +37,46 @@ The package computes bytes, FLOPs, intensity, the intensity limit, the batch tha
 ## The rule
 
 Before you buy batch for decode, compute the intensity limit: FLOPs per token divided by KV bytes per sequence. If it is below your chip's ridge, batch will raise throughput but the step stays memory-bound. Then shrink the KV bytes (FP8 KV alone lifts the 4k limit only to 233, so GQA or MLA have to do the rest), keep less context in the cache, verify more than one token per step, or move decode to memory with a lower ridge.
+
+<!-- audiences:start -->
+## What this means to you
+
+### For people who use chatbots and never think about chips
+
+![A big blue 0.4% next to three facts for one token of Qwen2.5-72B on one NVIDIA B200 in bf16: it reads the whole 145.4 GB model, waits 18 ms, and caps one user at 55 tok/s. A long bar shows a thin busy sliver and the rest idle. Spec-sheet bound, not a measurement.](images/aud-normie.png)
+
+making one token for one user, the chip writing your chatbot reply keeps 0.4% of its math busy. the rest waits on memory.
+
+### For investors, business folks, anyone paying for GPUs
+
+![A bar for a B200's compute with the reachable part shaded up to a blue line at 41%, marked 0.4% at 1 user and 15% at 64 users. Below: 55 tok/s at 1 user and 2,214 tok/s at 64. Qwen2.5-72B, bf16, 4,096-token context, spec-sheet bound.](images/aud-vc-business.png)
+
+more users per gpu still sells more tokens. it just never makes the chip more than 41% busy at 4k context.
+
+### For performance and capacity engineers
+
+![Card of tensor-core busy bounds by batch for Qwen2.5-72B decode on one B200, bf16, 4,096 tokens: 0.4% at batch 1, 2% at 6, 15% at 64, under 41% at any batch, drawn as bars against a dashed ceiling. Side note: that flat line is the KV cache read.](images/aud-perf-capacity.png)
+
+if decode utilization climbs with batch and then goes flat, you're looking at the kv cache read.
+
+### For CUDA, hardware, and co-design folks
+
+![Two equations: B200 2.25 PFLOPS dense BF16 over 8 TB/s HBM3e gives 281 FLOP/byte; WSE-3 125 PFLOPS over 21 PB/s on-chip SRAM gives 6 FLOP/byte, in blue. A log axis puts the 4k decode ceiling of 116 between the ridges. The catch: 44 GB vs 180 GB.](images/aud-cuda-hardware.png)
+
+the ridge is peak compute over bandwidth. sram drops it from 281 to 6, and 4k decode (116) sits in between.
+
+### For ML and inference engineers who tune batch size
+
+![Table for Qwen2.5-72B on one B200: at 512 tokens bf16, limit 875 vs ridge 281, reached at batch 411; at 4,096 bf16, limit 116 (blue) vs 281, never compute-bound; at 4,096 fp8, 233 vs 562, never. Levers: fewer KV heads, less context, more tokens per read.](images/aud-ml-engineer.png)
+
+flops per token over kv bytes per sequence. if that's under your chip's ridge, batch won't make decode compute-bound.
+
+### For hardware and market analysts
+
+![Table comparing NVIDIA B200 and Cerebras WSE-3: 2.25 vs 125 PFLOPS, 8 TB/s vs 21 PB/s, ridge 281 vs 6 FLOP per byte, 180 GB vs 44 GB. For Qwen2.5-72B in bf16: fits on B200 with 34.6 GB left but is never compute-bound at 4k; does not fit on WSE-3.](images/aud-analyst.png)
+
+B200 vs WSE-3 on paper: one wall each. the gpu runs out of bandwidth, the wafer runs out of room.
+<!-- audiences:end -->
 
 ## Sources
 
