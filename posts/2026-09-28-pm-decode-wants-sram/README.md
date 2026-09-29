@@ -12,6 +12,10 @@ The FLOPs are small by comparison: two per weight, plus attention over the conte
 
 A B200 does 2.25 PFLOPS of dense BF16 and moves 8 TB/s from HBM3e, which puts its ridge point at 281 FLOP per byte. Below the ridge, memory is the limiter: at batch 1 the step spends 18 ms streaming weights, uses 0.4% of the tensor cores, and is bounded at 55 tokens per second for that one user. No kernel beats it, because the bytes have to move.
 
+![A many-armed chef sits idle at an empty counter while a courier bikes in one crate of ingredients from far away](images/fun.png)
+
+*The chef is fast and the pantry is far away. At batch 1 the tensor cores mostly wait on memory.*
+
 ## Batch helps, then stops helping
 
 Batching amortizes the weight read across sequences, and the intensity climbs: 43 FLOP per byte at batch 64 (2,214 tokens per second for the whole batch, 15% of peak compute) and 105 at batch 1,024. Capacity is a separate constraint: bf16 weights leave 34.6 GB free on a B200, about 25 sequences of 4,096 tokens, so the larger batches need tensor parallelism or FP8; splitting the model divides FLOPs and bytes alike and leaves the intensity where it is. The KV read grows with the batch, though, 1.3 GB per sequence, and it never amortizes. So the intensity converges to a limit: FLOPs per token divided by KV bytes per sequence. At 4,096 tokens of context that limit is 116 FLOP per byte.
@@ -44,7 +48,7 @@ cd code && uv run pytest -q && uv run python -m decode_roofline
 cd code && python3 -m decode_roofline.gpu_decode
 ```
 
-The package computes bytes, FLOPs, intensity, the intensity limit, the batch that reaches each chip's ridge, and what fits, for any config.json you give it. Every chip number is a spec-sheet value with its derivation in `chips.py`. The GPU script prints `results/b200-decode.md` in seconds on a B200. Assumptions of the bound: one GPU, a dense model (MoE lowers FLOPs per token faster than bytes, so the limit drops further), one token per sequence per step (speculative decoding verifies several tokens per weight read and raises intensity by that factor), a full-context KV read (no prefix sharing or sparse attention), and peak rather than achievable bandwidth.
+The package computes bytes, FLOPs, intensity, the intensity limit, the batch that reaches each chip's ridge, and what fits, for any config.json you give it. Every chip number is a spec-sheet value with its derivation in [`chips.py`](code/decode_roofline/chips.py). The GPU script prints [`results/b200-decode.md`](code/results/b200-decode.md) in seconds on a B200. Assumptions of the bound: one GPU, a dense model (MoE lowers FLOPs per token faster than bytes, so the limit drops further), one token per sequence per step (speculative decoding verifies several tokens per weight read and raises intensity by that factor), a full-context KV read (no prefix sharing or sparse attention), and peak rather than achievable bandwidth.
 
 ## The rule
 
