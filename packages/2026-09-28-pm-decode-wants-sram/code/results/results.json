@@ -1,0 +1,199 @@
+{
+  "model": "Qwen2.5-72B-Instruct",
+  "params": 72704065536,
+  "context": 4096,
+  "table1_b200_bf16_by_batch": [
+    {
+      "batch": 1,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 1342177280,
+      "flops": 156145549312.0,
+      "intensity": 1.0640219503829884,
+      "limiter": "memory",
+      "tok_s_bound": 54.51436586293872,
+      "compute_util": 0.0037831891569172923
+    },
+    {
+      "batch": 4,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 5368709120,
+      "flops": 624582197248.0,
+      "intensity": 4.142427951485479,
+      "limiter": "memory",
+      "tok_s_bound": 212.23418635946368,
+      "compute_util": 0.014728632716392817
+    },
+    {
+      "batch": 16,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 21474836480,
+      "flops": 2498328788992.0,
+      "intensity": 14.970543882577662,
+      "limiter": "memory",
+      "tok_s_bound": 767.0045773851413,
+      "compute_util": 0.05322860047138725
+    },
+    {
+      "batch": 64,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 85899345920,
+      "flops": 9993315155968.0,
+      "intensity": 43.20359759193443,
+      "limiter": "memory",
+      "tok_s_bound": 2213.503889533619,
+      "compute_util": 0.15361279143798912
+    },
+    {
+      "batch": 256,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 343597383680,
+      "flops": 39973260623872.0,
+      "intensity": 81.74398737434385,
+      "limiter": "memory",
+      "tok_s_bound": 4188.091827632346,
+      "compute_util": 0.29064528844211146
+    },
+    {
+      "batch": 1024,
+      "bytes_weights": 145408131072,
+      "bytes_kv": 1374389534720,
+      "flops": 159893042495488.0,
+      "intensity": 105.2067956770839,
+      "limiter": "memory",
+      "tok_s_bound": 5390.191197412432,
+      "compute_util": 0.37406860685185395
+    }
+  ],
+  "table2_ridge": [
+    {
+      "chip": "B200 BF16",
+      "peak_flops": 2250000000000000.0,
+      "mem_bw": 8000000000000.0,
+      "ridge": 281.25,
+      "w_bytes": 2,
+      "kv_bytes": 2,
+      "batch_at_ridge": {
+        "512": 411,
+        "4096": null,
+        "32768": null
+      },
+      "intensity_limit": {
+        "512": 874.7,
+        "4096": 116.3375,
+        "32768": 21.5421875
+      }
+    },
+    {
+      "chip": "B200 FP8",
+      "peak_flops": 4500000000000000.0,
+      "mem_bw": 8000000000000.0,
+      "ridge": 562.5,
+      "w_bytes": 1,
+      "kv_bytes": 1,
+      "batch_at_ridge": {
+        "512": 411,
+        "4096": null,
+        "32768": null
+      },
+      "intensity_limit": {
+        "512": 1749.4,
+        "4096": 232.675,
+        "32768": 43.084375
+      }
+    },
+    {
+      "chip": "WSE-3",
+      "peak_flops": 1.25e+17,
+      "mem_bw": 2.1e+16,
+      "ridge": 5.9523809523809526,
+      "w_bytes": 2,
+      "kv_bytes": 2,
+      "batch_at_ridge": {
+        "512": 6,
+        "4096": 6,
+        "32768": 6
+      },
+      "intensity_limit": {
+        "512": 874.7,
+        "4096": 116.3375,
+        "32768": 21.5421875
+      }
+    }
+  ],
+  "table3_fit": [
+    {
+      "model": "Qwen2.5-72B-Instruct",
+      "precision": "bf16",
+      "params": 72704065536,
+      "weights_bytes": 145408131072,
+      "fits_b200": true,
+      "kv_tokens_b200": 105566,
+      "fits_wse3": false,
+      "kv_tokens_wse3": 0,
+      "kv_bytes_per_token": 327680
+    },
+    {
+      "model": "Qwen2.5-72B-Instruct",
+      "precision": "fp8",
+      "params": 72704065536,
+      "weights_bytes": 72704065536,
+      "fits_b200": true,
+      "kv_tokens_b200": 654882,
+      "fits_wse3": false,
+      "kv_tokens_wse3": 0,
+      "kv_bytes_per_token": 163840
+    },
+    {
+      "model": "Qwen2.5-7B-Instruct",
+      "precision": "bf16",
+      "params": 7615283200,
+      "weights_bytes": 15230566400,
+      "fits_b200": true,
+      "kv_tokens_b200": 2873350,
+      "fits_wse3": true,
+      "kv_tokens_wse3": 501699,
+      "kv_bytes_per_token": 57344
+    },
+    {
+      "model": "Qwen2.5-7B-Instruct",
+      "precision": "fp8",
+      "params": 7615283200,
+      "weights_bytes": 7615283200,
+      "fits_b200": true,
+      "kv_tokens_b200": 6012301,
+      "fits_wse3": true,
+      "kv_tokens_wse3": 1268998,
+      "kv_bytes_per_token": 28672
+    }
+  ],
+  "chips": {
+    "B200 BF16": {
+      "peak_flops": 2250000000000000.0,
+      "mem_bw": 8000000000000.0,
+      "mem_bytes": 180000000000.0,
+      "ridge": 281.25,
+      "precision": "BF16 dense",
+      "source": "nvidia-dgx-b200, nvidia-hgx",
+      "derivation": "64 TB/s / 8 GPUs; 36 PFLOPS sparse / 2 / 8 GPUs"
+    },
+    "B200 FP8": {
+      "peak_flops": 4500000000000000.0,
+      "mem_bw": 8000000000000.0,
+      "mem_bytes": 180000000000.0,
+      "ridge": 562.5,
+      "precision": "FP8 dense",
+      "source": "nvidia-dgx-b200, nvidia-hgx",
+      "derivation": "64 TB/s / 8 GPUs; 72 PFLOPS sparse / 2 / 8 GPUs"
+    },
+    "WSE-3": {
+      "peak_flops": 1.25e+17,
+      "mem_bw": 2.1e+16,
+      "mem_bytes": 44000000000.0,
+      "ridge": 5.9523809523809526,
+      "precision": "peak AI performance as listed",
+      "source": "cerebras-wse3-pr, cerebras-inference-blog",
+      "derivation": "as listed"
+    }
+  },
+  "conditions": "Conditions: spec-sheet bounds, not measurements. Bytes = weights once per step + KV once per sequence; FLOPs = 2 per weight + 4*layers*hidden*context for attention. Model shapes from the Hugging Face configs. B200 per-GPU numbers derived from NVIDIA's 8-GPU DGX/HGX B200 pages (dense = sparse/2). WSE-3 numbers as listed by Cerebras. GB and TB are decimal."
+}

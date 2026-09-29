@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Geist, Inter, sans-serif">
+<rect width="1600" height="900" fill="#0b0c0f"/>
+<text x="80.0" y="110.0" font-size="44" font-weight="500" fill="#f3efe6" text-anchor="start" >A 72B decode step never reaches the B200 ridge at 4k context</text>
+<text x="80.0" y="150.0" font-size="22" font-weight="400" fill="#9a978f" text-anchor="start" >One decode step of Qwen2.5-72B-Instruct, bf16 weights and KV, by batch size. Spec-sheet bounds.</text>
+<line x1="260" y1="690.0" x2="1500" y2="690.0" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="244.0" y="697.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="end" font-family="Geist Mono, monospace">1</text>
+<line x1="260" y1="531.7" x2="1500" y2="531.7" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="244.0" y="538.7" font-size="20" font-weight="400" fill="#9a978f" text-anchor="end" font-family="Geist Mono, monospace">10</text>
+<line x1="260" y1="373.3" x2="1500" y2="373.3" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="244.0" y="380.3" font-size="20" font-weight="400" fill="#9a978f" text-anchor="end" font-family="Geist Mono, monospace">100</text>
+<line x1="260" y1="215.0" x2="1500" y2="215.0" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="244.0" y="222.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="end" font-family="Geist Mono, monospace">1,000</text>
+<line x1="260.0" y1="215" x2="260.0" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="260.0" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">1</text>
+<line x1="466.7" y1="215" x2="466.7" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="466.7" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">4</text>
+<line x1="673.3" y1="215" x2="673.3" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="673.3" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">16</text>
+<line x1="880.0" y1="215" x2="880.0" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="880.0" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">64</text>
+<line x1="1086.7" y1="215" x2="1086.7" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="1086.7" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">256</text>
+<line x1="1293.3" y1="215" x2="1293.3" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="1293.3" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">1,024</text>
+<line x1="1500.0" y1="215" x2="1500.0" y2="690" stroke="#2a2d34" stroke-width="1" opacity="0.6"/>
+<text x="1500.0" y="722.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="middle" font-family="Geist Mono, monospace">4,096</text>
+<line x1="260" y1="690" x2="1500" y2="690" stroke="#9a978f" stroke-width="1"/>
+<line x1="260" y1="215" x2="260" y2="690" stroke="#9a978f" stroke-width="1"/>
+<text x="880.0" y="754.0" font-size="22" font-weight="400" fill="#9a978f" text-anchor="middle" >batch size, sequences decoding together (log scale)</text>
+<text x="60" y="452.5" font-size="22" fill="#9a978f" text-anchor="middle" transform="rotate(-90 60 452.5)">FLOP per byte moved (log scale)</text>
+<line x1="260" y1="302.2" x2="1500" y2="302.2" stroke="#f3efe6" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="272.0" y="292.2" font-size="20" font-weight="500" fill="#f3efe6" text-anchor="start" font-family="Geist Mono, monospace">B200 ridge: 2.25 PFLOPS dense BF16 / 8 TB/s HBM3e = 281 FLOP/byte</text>
+<line x1="260" y1="567.3" x2="1500" y2="567.3" stroke="#f3efe6" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="1500.0" y="557.3" font-size="20" font-weight="500" fill="#f3efe6" text-anchor="end" font-family="Geist Mono, monospace">WSE-3 ridge: 125 PFLOPS / 21 PB/s on-chip SRAM = 6 FLOP/byte</text>
+<polyline points="260.0,689.4 275.5,682.3 291.0,675.2 306.5,668.0 322.0,660.9 337.5,653.8 353.0,646.6 368.5,639.5 384.0,632.4 399.5,625.2 415.0,618.1 430.5,611.0 446.0,603.9 461.5,596.7 477.0,589.6 492.5,582.5 508.0,575.4 523.5,568.3 539.0,561.2 554.5,554.1 570.0,547.0 585.5,539.9 601.0,532.9 616.5,525.8 632.0,518.7 647.5,511.7 663.0,504.7 678.5,497.6 694.0,490.6 709.5,483.6 725.0,476.7 740.5,469.7 756.0,462.8 771.5,455.8 787.0,449.0 802.5,442.1 818.0,435.3 833.5,428.5 849.0,421.7 864.5,415.0 880.0,408.3 895.5,401.7 911.0,395.1 926.5,388.5 942.0,382.1 957.5,375.7 973.0,369.4 988.5,363.1 1004.0,357.0 1019.5,350.9 1035.0,344.9 1050.5,339.1 1066.0,333.3 1081.5,327.7 1097.0,322.2 1112.5,316.8 1128.0,311.6 1143.5,306.6 1159.0,301.6 1174.5,296.9 1190.0,292.3 1205.5,287.9 1221.0,283.7 1236.5,279.6 1252.0,275.8 1267.5,272.1 1283.0,268.6 1298.5,265.3 1314.0,262.2 1329.5,259.2 1345.0,256.5 1360.5,253.9 1376.0,251.4 1391.5,249.2 1407.0,247.1 1422.5,245.1 1438.0,243.3 1453.5,241.7 1469.0,240.1 1484.5,238.7 1500.0,237.4" fill="none" stroke="#f3efe6" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="260.0,685.7 275.5,678.7 291.0,671.6 306.5,664.5 322.0,657.5 337.5,650.4 353.0,643.4 368.5,636.4 384.0,629.3 399.5,622.4 415.0,615.4 430.5,608.4 446.0,601.5 461.5,594.6 477.0,587.7 492.5,580.8 508.0,574.0 523.5,567.2 539.0,560.4 554.5,553.7 570.0,547.0 585.5,540.4 601.0,533.8 616.5,527.3 632.0,520.8 647.5,514.4 663.0,508.1 678.5,501.8 694.0,495.7 709.5,489.6 725.0,483.7 740.5,477.8 756.0,472.1 771.5,466.4 787.0,460.9 802.5,455.6 818.0,450.4 833.5,445.3 849.0,440.4 864.5,435.6 880.0,431.0 895.5,426.6 911.0,422.4 926.5,418.4 942.0,414.5 957.5,410.8 973.0,407.3 988.5,404.0 1004.0,400.9 1019.5,397.9 1035.0,395.2 1050.5,392.6 1066.0,390.2 1081.5,387.9 1097.0,385.8 1112.5,383.9 1128.0,382.1 1143.5,380.4 1159.0,378.8 1174.5,377.4 1190.0,376.1 1205.5,374.9 1221.0,373.8 1236.5,372.8 1252.0,371.9 1267.5,371.1 1283.0,370.3 1298.5,369.6 1314.0,369.0 1329.5,368.4 1345.0,367.9 1360.5,367.4 1376.0,367.0 1391.5,366.6 1407.0,366.2 1422.5,365.9 1438.0,365.6 1453.5,365.4 1469.0,365.1 1484.5,364.9 1500.0,364.7" fill="none" stroke="#f0b429" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="260.0,663.0 275.5,656.3 291.0,649.8 306.5,643.2 322.0,636.8 337.5,630.4 353.0,624.1 368.5,617.8 384.0,611.7 399.5,605.6 415.0,599.6 430.5,593.8 446.0,588.0 461.5,582.4 477.0,576.9 492.5,571.5 508.0,566.3 523.5,561.3 539.0,556.3 554.5,551.6 570.0,547.0 585.5,542.6 601.0,538.4 616.5,534.3 632.0,530.5 647.5,526.8 663.0,523.3 678.5,520.0 694.0,516.9 709.5,513.9 725.0,511.1 740.5,508.6 756.0,506.1 771.5,503.9 787.0,501.8 802.5,499.8 818.0,498.0 833.5,496.4 849.0,494.8 864.5,493.4 880.0,492.1 895.5,490.9 911.0,489.8 926.5,488.8 942.0,487.9 957.5,487.0 973.0,486.3 988.5,485.6 1004.0,485.0 1019.5,484.4 1035.0,483.9 1050.5,483.4 1066.0,483.0 1081.5,482.6 1097.0,482.2 1112.5,481.9 1128.0,481.6 1143.5,481.3 1159.0,481.1 1174.5,480.9 1190.0,480.7 1205.5,480.5 1221.0,480.4 1236.5,480.2 1252.0,480.1 1267.5,480.0 1283.0,479.9 1298.5,479.8 1314.0,479.7 1329.5,479.6 1345.0,479.5 1360.5,479.5 1376.0,479.4 1391.5,479.4 1407.0,479.3 1422.5,479.3 1438.0,479.2 1453.5,479.2 1469.0,479.2 1484.5,479.1 1500.0,479.1" fill="none" stroke="#9a978f" stroke-width="3" stroke-linejoin="round"/>
+<text x="1492.0" y="223.4" font-size="20" font-weight="500" fill="#f3efe6" text-anchor="end" >512-token context</text>
+<text x="1492.0" y="394.7" font-size="20" font-weight="500" fill="#f3efe6" text-anchor="end" >4,096-token context</text>
+<text x="1492.0" y="509.1" font-size="20" font-weight="500" fill="#9a978f" text-anchor="end" >32,768-token context</text>
+<circle cx="1157.2" cy="302.2" r="7" fill="#0b0c0f" stroke="#f3efe6" stroke-width="2"/>
+<text x="1173.2" y="332.2" font-size="20" font-weight="400" fill="#f3efe6" text-anchor="start" >batch 411 at 512 tokens</text>
+<text x="80.0" y="800.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="start" font-family="Geist Mono, monospace">bytes = weights once per step + KV once per sequence; FLOPs = 2 per weight + attention over the context</text>
+<text x="80.0" y="828.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="start" font-family="Geist Mono, monospace">B200 per GPU from NVIDIA DGX/HGX B200 pages (dense = sparse/2); WSE-3 as listed by Cerebras</text>
+<text x="80.0" y="856.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="start" font-family="Geist Mono, monospace">Qwen2.5-72B-Instruct: 72.7B params, 80 layers, 8 KV heads, 320 KiB KV/token</text>
+<text x="1520.0" y="856.0" font-size="20" font-weight="400" fill="#9a978f" text-anchor="end" font-family="Geist Mono, monospace">research · github.com/antje/research</text>
+<text x="280.0" y="440.0" font-size="80" font-weight="600" fill="#f0b429" text-anchor="start" font-family="Geist Mono, monospace">116</text>
+<text x="280.0" y="482.0" font-size="22" font-weight="500" fill="#f3efe6" text-anchor="start">FLOP/byte: the 4,096-token</text>
+<text x="280.0" y="510.0" font-size="22" font-weight="500" fill="#f3efe6" text-anchor="start">ceiling, below the ridge</text>
+<text x="280.0" y="538.0" font-size="22" font-weight="500" fill="#f3efe6" text-anchor="start">at any batch</text>
+</svg>

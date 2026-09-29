@@ -1,0 +1,72 @@
+[
+ {
+  "id": "gimlet-cerebras",
+  "url": "https://gimletlabs.ai/blog/cerebras-announcement",
+  "title": "Scaling low-latency inference with Gimlet Cloud and Cerebras (Gimlet Labs, Sep 28 2026)",
+  "fetched": "2026-09-28",
+  "quote": "Together, Gimlet and Cerebras plan to deploy 100 megawatts of Cerebras-powered inference capacity. The first Cerebras-powered Gimlet Cloud datacenter is expected to come online later this year, delivering speeds of up to 3,000 tokens per second for demanding agentic and real-time applications. Gimlet uses disaggregation techniques including Prefill-Decode, Attention-FFN, and Speculative Decoding disaggregation to run these phases across different types of silicon. The Cerebras architecture is particularly well suited to memory-intensive inference operations, including the token-generation phase of large language models, where latency and responsiveness are critical."
+ },
+ {
+  "id": "gimlet-sram",
+  "url": "https://gimletlabs.ai/blog/sram-centric-chips",
+  "title": "The emerging role of SRAM-centric chips in AI inference (Gimlet Labs, Mar 5 2026)",
+  "fetched": "2026-09-28",
+  "quote": "The H100 has 50 MB in SRAM, rising to 126 MB for the B200, whereas SRAM-centric architectures invest more heavily: B200 (dual-die) ~1600 mm² 4 nm 126 MB L2; Groq LPU v1 725 mm² 14 nm 230 MB; Cerebras WSE-3 46255 mm² 5 nm 44 GB. Off-chip memory bandwidth scales O(1/sqrt(N)) with chip area, whereas on-chip memory bandwidth scales closer to O(1) with chip area but is fundamentally capped by total chip size and zero-sum with compute capacity. Even Cerebras, the largest SRAM-centric chip which uses an entire wafer, \"only\" has 44 GB of SRAM storage, so weights for large models need to be distributed across multiple chips. As the CTO of d-Matrix noted, \"Industry benchmarks show that compute performance has grown roughly 3x every two years, while memory bandwidth has lagged at just 1.6x.\""
+ },
+ {
+  "id": "nvidia-dgx-b200",
+  "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+  "title": "NVIDIA DGX B200 specifications",
+  "fetched": "2026-09-28",
+  "quote": "GPU: 8x NVIDIA Blackwell GPUs. GPU Memory: 1,440 GB total, 64 TB/s HBM3e bandwidth. FP4 Tensor Core: 144 PFLOPS | 72 PFLOPS. FP8 Tensor Core: 72 PFLOPS. Footnotes: *Shown in sparse | dense. **Specification shown in sparse. Dense performance is ½ sparse spec shown."
+ },
+ {
+  "id": "nvidia-hgx",
+  "url": "https://www.nvidia.com/en-us/data-center/hgx/",
+  "title": "NVIDIA HGX B200 specifications (8 GPUs)",
+  "fetched": "2026-09-28",
+  "quote": "FP4 Tensor Core: 144 PFLOPS | 72 PFLOPS (Specification in Sparse | Dense). FP8/FP6 Tensor Core: 72 PFLOPS. FP16/BF16 Tensor Core: 36 PFLOPS. TF32 Tensor Core: 18 PFLOPS. Total Memory: 1.4 TB. NVLink GPU-to-GPU Bandwidth: 1.8 TB/s."
+ },
+ {
+  "id": "cerebras-wse3-pr",
+  "url": "https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine",
+  "title": "Cerebras announces third generation Wafer-Scale Engine (press release, Mar 2024)",
+  "fetched": "2026-09-28",
+  "quote": "4 trillion transistors; 900,000 AI optimized compute cores; 125 petaflops of peak AI performance; 44GB on-chip SRAM; 5nm TSMC process."
+ },
+ {
+  "id": "cerebras-inference-blog",
+  "url": "https://www.cerebras.ai/blog/introducing-cerebras-inference-ai-at-instant-speed",
+  "title": "Introducing Cerebras Inference: AI at Instant Speed (Cerebras, Aug 27 2024)",
+  "fetched": "2026-09-28",
+  "quote": "With our unique wafer-scale design, we are able to integrate 44GB of SRAM on a single chip. In total, the WSE-3 has 21 petabytes/s of aggregate memory bandwidth – 7,000x that of an H100. A H100 has 3.3 TB/s of memory bandwidth."
+ },
+ {
+  "id": "qwen72b-config",
+  "url": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct/raw/main/config.json",
+  "title": "Qwen2.5-72B-Instruct config.json",
+  "fetched": "2026-09-28",
+  "quote": "\"hidden_size\": 8192, \"intermediate_size\": 29568, \"num_attention_heads\": 64, \"num_hidden_layers\": 80, \"num_key_value_heads\": 8, \"tie_word_embeddings\": false, \"torch_dtype\": \"bfloat16\", \"vocab_size\": 152064"
+ },
+ {
+  "id": "qwen72b-card",
+  "url": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+  "title": "Qwen2.5-72B-Instruct model card",
+  "fetched": "2026-09-28",
+  "quote": "Number of Parameters: 72.7B. Number of Paramaters (Non-Embedding): 70.0B. Number of Layers: 80. Number of Attention Heads (GQA): 64 for Q and 8 for KV."
+ },
+ {
+  "id": "qwen7b-config",
+  "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/main/config.json",
+  "title": "Qwen2.5-7B-Instruct config.json",
+  "fetched": "2026-09-28",
+  "quote": "\"hidden_size\": 3584, \"intermediate_size\": 18944, \"num_attention_heads\": 28, \"num_hidden_layers\": 28, \"num_key_value_heads\": 4, \"tie_word_embeddings\": false, \"vocab_size\": 152064"
+ },
+ {
+  "id": "qwen7b-card",
+  "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+  "title": "Qwen2.5-7B-Instruct model card",
+  "fetched": "2026-09-28",
+  "quote": "Number of Parameters: 7.61B. Number of Paramaters (Non-Embedding): 6.53B. Number of Layers: 28. Number of Attention Heads (GQA): 28 for Q and 4 for KV."
+ }
+]
