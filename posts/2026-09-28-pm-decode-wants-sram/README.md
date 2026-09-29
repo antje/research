@@ -51,7 +51,7 @@ The package computes bytes, FLOPs, intensity, the intensity limit, the batch tha
 Before you buy batch for decode, compute the intensity limit: FLOPs per token divided by KV bytes per sequence. If it is below your chip's ridge, batch will raise throughput but the step stays memory-bound. Then shrink the KV bytes (FP8 KV alone lifts the 4k limit only to 233, so GQA or MLA have to do the rest), keep less context in the cache, verify more than one token per step, or move decode to memory with a lower ridge.
 
 <!-- audiences:start -->
-## What this means to you
+## What this means for you
 
 ### For people who use chatbots and never think about chips
 
