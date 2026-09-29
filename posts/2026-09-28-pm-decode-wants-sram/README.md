@@ -26,13 +26,25 @@ The ridge is a ratio, and SRAM-centric chips attack the denominator. Cerebras li
 
 The price is capacity. The WSE-3 has 44 GB of SRAM. A B200 has 126 MB of SRAM and 180 GB of HBM (Gimlet's post on SRAM-centric chips has the comparison, with Groq's 230 MB in between). Qwen2.5-72B does not fit on one wafer in bf16 or fp8. Qwen2.5-7B fits, with room for about 500,000 KV tokens. Larger models have to be spread across chips, as Gimlet's post says, or inference has to be split so that only the bandwidth-bound phase lands on SRAM. That is what prefill/decode, attention/FFN, and speculative-decode disaggregation are for. Gimlet's post says the architecture is suited to the token-generation phase, where latency matters most; the roofline above is the reason.
 
+## Measured on a B200
+
+The roofline above comes from spec sheets, so `code/` also ships a GPU script that checks it on one NVIDIA B200 (driver 580.173.02, CUDA 13.0, torch 2.13.0+cu130, clocks not locked). It builds one Qwen2.5-72B decoder layer with random bf16 weights, times a decode step with CUDA graphs across batch sizes, and scales the result to 80 layers.
+
+At batch 1 and 4,096 tokens, a layer takes 338 us against a spec bound of 222 us, or 37 tok/s for 80 layers against the full-model bound of 55. Plain PyTorch kernels get 66% of the way to the bound.
+
+The tell shows up on the real chip. At 4,096 tokens, compute used goes 0.2%, 0.9%, 3.5%, 10.3%, 20.1%, and 21.9% for batch 1, 4, 16, 64, 256, and 1,024, then stops climbing, well under the 41% ceiling. At 512 tokens the same batches reach 43.3%. The flat part is the KV read: attention per sequence floors at 2.28 us per layer, the time to stream that sequence's 16.8 MB of KV, while the rest of the layer per sequence drops from 326.82 us to 1.56 us. The measured curve sits below the bound because attention and the matmuls run one after the other. At batch 1,024, attention alone takes 2,330 us per layer, about the whole layer's bound of 2,367 us.
+
+What about the B200's own on-chip memory? A batch-1 GEMV reads 13.25 TB/s from L2 and 7.25 TB/s from HBM, 1.8x faster, but the L2 holds 126.5 MiB and one layer's weights are 1.76 GB. Decode streams from HBM.
+
 ## Run it
 
 ```bash
 cd code && uv run pytest -q && uv run python -m decode_roofline
+# on a CUDA GPU, with torch installed:
+cd code && python3 -m decode_roofline.gpu_decode
 ```
 
-The package computes bytes, FLOPs, intensity, the intensity limit, the batch that reaches each chip's ridge, and what fits, for any config.json you give it. Every chip number is a spec-sheet value with its derivation in `chips.py`. Nothing here is a measurement; real serving stacks land below these bounds, and the bounds are still the right place to start. Assumptions: one GPU, a dense model (MoE lowers FLOPs per token faster than bytes, so the limit drops further), one token per sequence per step (speculative decoding verifies several tokens per weight read and raises intensity by that factor), a full-context KV read (no prefix sharing or sparse attention), and peak rather than achievable bandwidth.
+The package computes bytes, FLOPs, intensity, the intensity limit, the batch that reaches each chip's ridge, and what fits, for any config.json you give it. Every chip number is a spec-sheet value with its derivation in `chips.py`. The GPU script prints `results/b200-decode.md` in seconds on a B200. Assumptions of the bound: one GPU, a dense model (MoE lowers FLOPs per token faster than bytes, so the limit drops further), one token per sequence per step (speculative decoding verifies several tokens per weight read and raises intensity by that factor), a full-context KV read (no prefix sharing or sparse attention), and peak rather than achievable bandwidth.
 
 ## The rule
 

@@ -5,6 +5,9 @@ description = "Roofline arithmetic for one LLM decode step: bytes, FLOPs, arithm
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+gpu = ["torch"]
+
 [dependency-groups]
 dev = ["pytest>=8"]
 
