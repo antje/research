@@ -1,4 +1,4 @@
-# Decode wants SRAM: a roofline you can run on your laptop
+# Decode wants SRAM
 
 ![Decode arithmetic intensity against batch size, with the B200 and WSE-3 ridge lines](images/b.png)
 
