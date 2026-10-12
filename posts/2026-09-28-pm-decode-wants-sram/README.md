@@ -4,7 +4,7 @@
 
 *Antje Barth, September 28, 2026*
 
-![A many-armed chef sits idle at an empty counter while a courier bikes in one crate of ingredients from far away](images/fun.png)
+![Even big batches leave the GPU waiting. Idle green clay chips watch one crate roll in: 0.2% busy at 1 user. Four blue chips get a line of crates, one unpacks, three still wait: 21.9% busy at 1,024 users. Qwen2.5-72B decode, BF16, 4,096-token context, one NVIDIA B200, measured.](images/fun.png)
 
 Gimlet Labs announced today that it's adding Cerebras wafer-scale chips to its inference cloud: 100 megawatts planned, up to 3,000 tokens per second. Why does a chip with 44 GB of memory earn a place next to GPUs with 180 GB? A roofline answers it.
 
@@ -18,7 +18,7 @@ A B200 does 2.25 PFLOPS of dense BF16 and moves 8 TB/s from HBM3e, which puts it
 
 Batching amortizes the weight read, and the intensity climbs: 43 FLOP per byte at batch 64 (2,214 tokens per second for the batch, 15% of peak compute) and 105 at batch 1,024. (Those batches need tensor parallelism or FP8: bf16 weights leave 34.6 GB free, about 25 sequences of 4,096 tokens.) The KV read, though, grows by 1.3 GB per sequence and never amortizes. So the intensity converges to FLOPs per token over KV bytes per sequence: 116 FLOP per byte at 4,096 tokens.
 
-![Decode arithmetic intensity against batch size, with the B200 and WSE-3 ridge lines](images/b.png)
+![Log-log clay roofline: FLOP/byte vs batch, Qwen2.5-72B bf16 decode on a B200. Blue 4,096-token curve flattens at 116, under the 281 ridge at any batch. The 512-token curve crosses it at batch 411. WSE-3 ridge at 6.](images/b.png)
 
 That limit sits below the ridge, so no batch makes this decode compute-bound on a B200. The tell: tensor-core utilization climbs with batch, then flattens below 41% (limit over ridge). That's the KV read.
 
@@ -33,6 +33,8 @@ The price is capacity. The WSE-3 has 44 GB of SRAM. A B200 has 126 MB of SRAM an
 ## Measured on a B200
 
 `code/` checks the spec-sheet roofline on one NVIDIA B200 (driver 580.173.02, CUDA 13.0, torch 2.13.0+cu130, clocks not locked): one Qwen2.5-72B decoder layer with random bf16 weights, timed with CUDA graphs and scaled to 80 layers. At batch 1 and 4,096 tokens, a layer takes 338 us against a bound of 222 us: 37 tok/s against 55, so plain PyTorch kernels get 66% of the way.
+
+![On one B200, a batch-1 bf16 GEMV reads weights at up to 13.25 TB/s while they fit in the 126.5 MiB L2, falling to 7.25 TB/s from HBM: 1.8x. A Qwen2.5-72B layer is 1.76 GB, so decode reads from HBM. Measured vs spec: 1,593 vs 2,250 TFLOPS, ridge 220 vs 281.](images/b200.png)
 
 The tell shows up on the real chip. At 4,096 tokens, compute used goes 0.2%, 0.9%, 3.5%, 10.3%, 20.1%, and 21.9% for batch 1, 4, 16, 64, 256, and 1,024, and stops, well under the 41% ceiling. At 512 tokens they reach 43.3%. Attention per sequence floors at 2.28 us per layer, the time to stream that sequence's 16.8 MB of KV, while everything else per sequence keeps shrinking. The measured curve sits below the bound because attention and the matmuls run one after the other.
 
