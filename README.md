@@ -1,9 +1,11 @@
 # research
 
+![Runnable notes on inference systems: a clay notebook with pop-ups for silicon, kernels, economics, schedulers, and RL and training](banner.png)
+
 Runnable notes on inference systems: heterogeneous inference, kernels, profilers, schedulers,
 RL and training infrastructure, and the economics of running models on NVIDIA, AMD, Google TPU,
-AWS Trainium, Cerebras, and d-Matrix silicon. Every post has a short explainer, a diagram, and
-code you can run on a laptop (`uv run`). Numbers carry their conditions and sources.
+AWS Trainium, Cerebras, and d-Matrix silicon. Every post has a hands-on explainer, a diagram,
+and code. Numbers carry their conditions and sources.
 
 | Date | Post | Summary |
 |---|---|---|
