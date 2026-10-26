@@ -12,7 +12,7 @@ Speculative decoding speeds up a big model, the target, by letting a cheap guess
 
 ## The one fact
 
-Leviathan, Kalman and Matias wrote the rule down in 2022. With q the guesser's probabilities and p the target's, the guesser samples a token from q. The checker keeps it with probability min(1, p/q). Otherwise draw the replacement from p − q, clipped at zero and renormalized. Their Appendix A.1 shows in one sum that for any p and q the result is distributed as p.
+Leviathan, Kalman and Matias wrote the rule down in 2022. With q the guesser's probabilities and p the target's, the guesser samples a token from q. The checker keeps it with probability min(1, p/q). Otherwise it draws the replacement from p − q, clipped at zero and renormalized. Their Appendix A.1 shows in one sum that for any p and q the result is distributed as p.
 
 ## A guesser who gets the order backwards
 
