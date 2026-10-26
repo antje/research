@@ -1,0 +1,939 @@
+{
+ "n": 16777216,
+ "n_kernel": 8388608,
+ "seed": 0,
+ "quick": false,
+ "table1": [
+  {
+   "prefix": "import numpy as",
+   "drafter": "the target itself",
+   "predicted": 0.9999999574816297,
+   "measured": 1.0,
+   "tv": 3.5286361589250553e-06,
+   "chi2": 0.5990412365453827,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.9450597933924269,
+   "measured": 0.9450510144233704,
+   "tv": 3.706470534976456e-06,
+   "chi2": 0.5956826936914253,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.02341691809356916,
+   "measured": 0.023393869400024414,
+   "tv": 3.077936491365993e-06,
+   "chi2": 1.0020387593239688,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.9999698402141309,
+   "measured": 0.9999727606773376,
+   "tv": 4.149380951999279e-06,
+   "chi2": 1.212018073494842,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "the target with its top token removed",
+   "predicted": 3.0117431886075158e-05,
+   "measured": 3.3736228942871094e-05,
+   "tv": 5.524366772975513e-06,
+   "chi2": 1.7680315614350173,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.9999698400497437,
+   "measured": 0.9999682903289795,
+   "tv": 3.973581409003404e-06,
+   "chi2": 0.9040363173071881,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "one-hot on a random token",
+   "predicted": 1.0603256011924855e-13,
+   "measured": 0.0,
+   "tv": 3.4271247651967295e-06,
+   "chi2": 0.559241004438055,
+   "dof": 8
+  },
+  {
+   "prefix": "import numpy as",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 3.1802315386349894e-05,
+   "measured": 3.260374069213867e-05,
+   "tv": 2.8303638925761183e-06,
+   "chi2": 0.6810059405850984,
+   "dof": 8
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "the target itself",
+   "predicted": 1.0000006473986733,
+   "measured": 1.0,
+   "tv": 0.0028795927484961507,
+   "chi2": 0.9892888710765961,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.20076235099838347,
+   "measured": 0.2007998824119568,
+   "tv": 0.002974633586856316,
+   "chi2": 1.0123359369796874,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.049144899882202706,
+   "measured": 0.04909414052963257,
+   "tv": 0.003036749790923783,
+   "chi2": 1.022742838660589,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.5980780365993015,
+   "measured": 0.5979825258255005,
+   "tv": 0.0029753160967252307,
+   "chi2": 0.9943203831506616,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "the target with its top token removed",
+   "predicted": 0.46270965704604283,
+   "measured": 0.46272140741348267,
+   "tv": 0.0029579460238832456,
+   "chi2": 0.9895155534494456,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.5372909903526306,
+   "measured": 0.5372232794761658,
+   "tv": 0.00299768836144422,
+   "chi2": 0.9629160464334993,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "one-hot on a random token",
+   "predicted": 7.150164904601297e-10,
+   "measured": 0.0,
+   "tv": 0.00308546499618291,
+   "chi2": 1.0051373990730064,
+   "dof": 2945
+  },
+  {
+   "prefix": "The capital of France is",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.019504063358335086,
+   "measured": 0.019482970237731934,
+   "tv": 0.003057097622286009,
+   "chi2": 0.9941748102031439,
+   "dof": 2945
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "the target itself",
+   "predicted": 1.000000057746579,
+   "measured": 1.0,
+   "tv": 0.00042290357948601264,
+   "chi2": 1.1542238337048338,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.6395405139819876,
+   "measured": 0.6395692229270935,
+   "tv": 0.0002887033408271226,
+   "chi2": 0.8261799164811376,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.04967490025322592,
+   "measured": 0.04963594675064087,
+   "tv": 0.000242304854291936,
+   "chi2": 0.9023159432651494,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.8192154574422021,
+   "measured": 0.8192205429077148,
+   "tv": 0.00024196358503922083,
+   "chi2": 0.8526587416260676,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "the target with its top token removed",
+   "predicted": 0.7123239021794097,
+   "measured": 0.7122129201889038,
+   "tv": 0.00034410505673331714,
+   "chi2": 1.2230291948144412,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.2876761555671692,
+   "measured": 0.28748923540115356,
+   "tv": 0.00039530819667855574,
+   "chi2": 0.96237090372183,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "one-hot on a random token",
+   "predicted": 8.839909138020266e-17,
+   "measured": 0.0,
+   "tv": 0.00029586857835320725,
+   "chi2": 1.0887908258011845,
+   "dof": 139
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.0008253584947259349,
+   "measured": 0.0008190274238586426,
+   "tv": 0.00028582646046321187,
+   "chi2": 1.0904905911202942,
+   "dof": 139
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "the target itself",
+   "predicted": 1.0000006623271118,
+   "measured": 1.0,
+   "tv": 0.0015894874021435826,
+   "chi2": 1.0182110311064978,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.25232895409531986,
+   "measured": 0.252178430557251,
+   "tv": 0.0014969778143332623,
+   "chi2": 1.0086948180814113,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.03991704195901612,
+   "measured": 0.039952218532562256,
+   "tv": 0.0015304610224667412,
+   "chi2": 0.9676143124393818,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.7437835210212089,
+   "measured": 0.7437796592712402,
+   "tv": 0.0015067830296434848,
+   "chi2": 1.0409712995470617,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "the target with its top token removed",
+   "predicted": 0.7095044620040069,
+   "measured": 0.7095357775688171,
+   "tv": 0.001585829571631919,
+   "chi2": 1.00576220519132,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.29049620032310486,
+   "measured": 0.290338397026062,
+   "tv": 0.0015643000707651793,
+   "chi2": 0.9936565775370989,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "one-hot on a random token",
+   "predicted": 1.5708960174332098e-11,
+   "measured": 0.0,
+   "tv": 0.001535064622715057,
+   "chi2": 0.9921832247475583,
+   "dof": 1390
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.00902609333376013,
+   "measured": 0.009012579917907715,
+   "tv": 0.0016445594632134488,
+   "chi2": 0.9817271921231806,
+   "dof": 1390
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "the target itself",
+   "predicted": 1.0000004327562384,
+   "measured": 1.0,
+   "tv": 0.003750717450350786,
+   "chi2": 0.9703821674832334,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.1837720903390766,
+   "measured": 0.18362677097320557,
+   "tv": 0.003847514447799295,
+   "chi2": 1.0635977507814247,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.05576375455031324,
+   "measured": 0.05582714080810547,
+   "tv": 0.0038478159295383127,
+   "chi2": 1.0175695895253454,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.6378790840645636,
+   "measured": 0.6378811597824097,
+   "tv": 0.0037477675202276526,
+   "chi2": 1.0291574698969612,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "the target with its top token removed",
+   "predicted": 0.7099157130983407,
+   "measured": 0.7099102139472961,
+   "tv": 0.0037571243255877284,
+   "chi2": 1.0131987863261513,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.29008471965789795,
+   "measured": 0.29011404514312744,
+   "tv": 0.00370367620879953,
+   "chi2": 0.9737986927756814,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "one-hot on a random token",
+   "predicted": 4.949384901919984e-07,
+   "measured": 7.152557373046875e-07,
+   "tv": 0.0038343362063551012,
+   "chi2": 0.9865744997087561,
+   "dof": 3983
+  },
+  {
+   "prefix": "My favorite color is",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.026477188861932732,
+   "measured": 0.026474058628082275,
+   "tv": 0.0037886469572460573,
+   "chi2": 0.9708282312982606,
+   "dof": 3983
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "the target itself",
+   "predicted": 1.00000032741591,
+   "measured": 1.0,
+   "tv": 0.005640452900141543,
+   "chi2": 1.0011024274116957,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.3332428297995649,
+   "measured": 0.33318108320236206,
+   "tv": 0.005622512295778718,
+   "chi2": 0.9992091247933255,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "flatter: temperature 4",
+   "predicted": 0.12970547091536003,
+   "measured": 0.1297200322151184,
+   "tv": 0.00565600119933718,
+   "chi2": 1.0076313448309868,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "sharper: temperature 0.5",
+   "predicted": 0.46607361325170543,
+   "measured": 0.4659302830696106,
+   "tv": 0.005634836312420823,
+   "chi2": 0.9718233763863681,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "the target with its top token removed",
+   "predicted": 0.8548074956612255,
+   "measured": 0.8547660708427429,
+   "tv": 0.005609912097201784,
+   "chi2": 0.9999583110570175,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "one-hot on the target's top token",
+   "predicted": 0.14519283175468445,
+   "measured": 0.14523255825042725,
+   "tv": 0.005569123310963959,
+   "chi2": 0.978495084322036,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "one-hot on a random token",
+   "predicted": 2.5057129704464387e-09,
+   "measured": 0.0,
+   "tv": 0.005520533092072511,
+   "chi2": 0.9806793945900546,
+   "dof": 7683
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.046248200026275416,
+   "measured": 0.04624760150909424,
+   "tv": 0.00551370460417754,
+   "chi2": 0.9973252255189633,
+   "dof": 7683
+  }
+ ],
+ "floors": [
+  {
+   "prefix": "import numpy as",
+   "tv": 2.8041030158861002e-06,
+   "chi2": 0.4916004560838362,
+   "dof": 8
+  },
+  {
+   "prefix": "The capital of France is",
+   "tv": 0.0029660374029923447,
+   "chi2": 0.9790472328803532,
+   "dof": 2945
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "tv": 0.0003602463392213415,
+   "chi2": 0.9305780034821167,
+   "dof": 139
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "tv": 0.001540955394269127,
+   "chi2": 0.9552077575088167,
+   "dof": 1390
+  },
+  {
+   "prefix": "My favorite color is",
+   "tv": 0.003891046403840662,
+   "chi2": 1.0228683556774838,
+   "dof": 3983
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "tv": 0.005656458937195166,
+   "chi2": 0.9972139913109128,
+   "dof": 7683
+  }
+ ],
+ "table2": [
+  {
+   "prefix": "The number I am thinking of is",
+   "rule": "the exact rule (control)",
+   "measured": 0.6394814848899841,
+   "predicted_tv": 2.887328942602352e-08,
+   "tv": 0.000398275719042688,
+   "chi2": 1.1557196062631347,
+   "max_gain_predicted": 1.0,
+   "max_gain": 1.1436992745012267
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "rule": "keep if p >= q, else sample the target afresh",
+   "measured": 0.606834888458252,
+   "predicted_tv": 0.07867869357678689,
+   "tv": 0.07860768152098234,
+   "chi2": 5459.665266529325,
+   "max_gain_predicted": 1.3665712203238831,
+   "max_gain": 1.3677042135939237
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "rule": "keep if the guess is the target's top token, else sample afresh",
+   "measured": 0.14076411724090576,
+   "predicted_tv": 0.10028532937688345,
+   "tv": 0.10038226025273221,
+   "chi2": 5933.715935621667,
+   "max_gain_predicted": 1.348604927350362,
+   "max_gain": 1.3488725044831504
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "rule": "keep if p(guess) > 0.05, else sample afresh (a hard typical-acceptance threshold)",
+   "measured": 0.6067875027656555,
+   "predicted_tv": 0.07867869357678689,
+   "tv": 0.07893383678743975,
+   "chi2": 5497.9571527252965,
+   "max_gain_predicted": 1.3665712203238831,
+   "max_gain": 1.3685769453364678
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "rule": "Leviathan's lenience, l = 0.5: compare p against 0.5 q, replace from max(0, p - 0.5 q)",
+   "measured": 0.6724648475646973,
+   "predicted_tv": 0.0808296672009384,
+   "tv": 0.0808659171552334,
+   "chi2": 6350.729059418912,
+   "max_gain_predicted": 2.0,
+   "max_gain": 2.237749041878703
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "rule": "the exact rule (control)",
+   "measured": 0.25218743085861206,
+   "predicted_tv": 3.3116355584107866e-07,
+   "tv": 0.001545701109980568,
+   "chi2": 0.9497626331572073,
+   "max_gain_predicted": 1.0,
+   "max_gain": 1.2411831769023114
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "rule": "keep if p >= q, else sample the target afresh",
+   "measured": 0.16622555255889893,
+   "predicted_tv": 0.054454214507984836,
+   "tv": 0.05481859458715613,
+   "chi2": 335.9898491722554,
+   "max_gain_predicted": 1.726613715011416,
+   "max_gain": 1.728821355177568
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "rule": "keep if the guess is the target's top token, else sample afresh",
+   "measured": 0.029087841510772705,
+   "predicted_tv": 0.020645171290290507,
+   "tv": 0.021347112768358156,
+   "chi2": 25.559215851869077,
+   "max_gain_predicted": 1.071068611675889,
+   "max_gain": 1.1863887547395904
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "rule": "keep if p(guess) > 0.05, else sample afresh (a hard typical-acceptance threshold)",
+   "measured": 0.07890009880065918,
+   "predicted_tv": 0.022376889139404443,
+   "tv": 0.022934788773555863,
+   "chi2": 31.08081821790279,
+   "max_gain_predicted": 1.0419239751157348,
+   "max_gain": 1.2580700228465607
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "rule": "Leviathan's lenience, l = 0.5: compare p against 0.5 q, replace from max(0, p - 0.5 q)",
+   "measured": 0.3071545958518982,
+   "predicted_tv": 0.08492122655319059,
+   "tv": 0.08544296665640883,
+   "chi2": 862.5209208648738,
+   "max_gain_predicted": 2.0,
+   "max_gain": 2.2771009970001814
+  }
+ ],
+ "table3": [
+  {
+   "prefix": "import numpy as",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 3.3652655024177992e-06,
+   "tv_ref": 3.3652655024177992e-06,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "import numpy as",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 1.0260555167131198e-06,
+   "tv_own": 3.5617123476921336e-06,
+   "tv_ref": 3.031645886040565e-06,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "import numpy as",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 1.6083782250509677e-05,
+   "tv_own": 1.943681680369053e-05,
+   "tv_ref": 3.776215929556866e-06,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "The capital of France is",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 0.0030009311380681082,
+   "tv_ref": 0.0030009311380681082,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 1
+  },
+  {
+   "prefix": "The capital of France is",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 0.007632093995504093,
+   "tv_own": 0.002895474579094441,
+   "tv_ref": 0.009915119007285287,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 7
+  },
+  {
+   "prefix": "The capital of France is",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 0.007174984401328279,
+   "tv_own": 0.0038209296426376937,
+   "tv_ref": 0.009669597784618612,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 1
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 0.000375766226564289,
+   "tv_ref": 0.000375766226564289,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 0.007043450595566755,
+   "tv_own": 0.0003338067091798715,
+   "tv_ref": 0.0071250584519695,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 0.007137028515789354,
+   "tv_own": 0.0006317768537362773,
+   "tv_ref": 0.0073257604468645425,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 0.00160060451908639,
+   "tv_ref": 0.00160060451908639,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 0.014662169820226804,
+   "tv_own": 0.0014622453417278912,
+   "tv_ref": 0.015600113718221108,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 0.014541485226574953,
+   "tv_own": 0.0016463865335945016,
+   "tv_ref": 0.015435762131632218,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 2
+  },
+  {
+   "prefix": "My favorite color is",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 0.0037669904697715337,
+   "tv_ref": 0.0037669904697715337,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 1
+  },
+  {
+   "prefix": "My favorite color is",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 0.01832909215940981,
+   "tv_own": 0.0037567203091644083,
+   "tv_ref": 0.02110650501813021,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "My favorite color is",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 0.01791053774869512,
+   "tv_own": 0.00419590530579228,
+   "tv_ref": 0.02074779424286833,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 0
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "version": "float32 head, float32 softmax",
+   "tv_version_ref": 0.0,
+   "tv_own": 0.00551943742833212,
+   "tv_ref": 0.00551943742833212,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 8
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "version": "bf16 head, float32 softmax (vLLM's path)",
+   "tv_version_ref": 0.009386511459254804,
+   "tv_own": 0.005710364942620645,
+   "tv_ref": 0.013264082629279573,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 3
+  },
+  {
+   "prefix": "Once upon a time, there was a",
+   "version": "bf16 head, probabilities stored in bf16",
+   "tv_version_ref": 0.009654326097850533,
+   "tv_own": 0.005489679815902093,
+   "tv_ref": 0.01350495314546184,
+   "n": 16777216,
+   "keep_differ": 0,
+   "output_differ": 9
+  }
+ ],
+ "table4": [
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "the target itself",
+   "predicted": 1.000000057746579,
+   "measured": 1.0,
+   "tv": 0.0004515241728557018,
+   "chi2": 1.0132902814680584,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.6395405139819876,
+   "measured": 0.6395953893661499,
+   "tv": 0.00044178023632474603,
+   "chi2": 0.9385007504359258,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.0008253584947259349,
+   "measured": 0.0008238554000854492,
+   "tv": 0.00029819374530339553,
+   "chi2": 0.9038173212787123,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "one-hot on the target's top token, as draft probs",
+   "predicted": 0.2876761555671692,
+   "measured": 0.28763890266418457,
+   "tv": 0.0002953944716120642,
+   "chi2": 1.1656862913064514,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "The number I am thinking of is",
+   "drafter": "one-hot on the target's top token, no draft probs (n-gram path)",
+   "predicted": 0.2876761555671692,
+   "measured": 0.2874847650527954,
+   "tv": 0.00047449988159162725,
+   "chi2": 0.9095621045323364,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "the target itself",
+   "predicted": 1.0000006623271118,
+   "measured": 1.0,
+   "tv": 0.0019692292743418056,
+   "chi2": 1.0273619689919744,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "flatter: temperature 2",
+   "predicted": 0.25232895409531986,
+   "measured": 0.25222933292388916,
+   "tv": 0.002109581723491934,
+   "chi2": 1.0422808416587037,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "uniform over the vocabulary",
+   "predicted": 0.00902609333376013,
+   "measured": 0.009020090103149414,
+   "tv": 0.0020649100370035214,
+   "chi2": 1.0249446020011954,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "one-hot on the target's top token, as draft probs",
+   "predicted": 0.29049620032310486,
+   "measured": 0.2907295227050781,
+   "tv": 0.0020883775896988685,
+   "chi2": 1.0592840562277817,
+   "bonus_consistent": true
+  },
+  {
+   "prefix": "Dear Sir or Madam,\n\nI am writing to",
+   "drafter": "one-hot on the target's top token, no draft probs (n-gram path)",
+   "predicted": 0.29049620032310486,
+   "measured": 0.2903556823730469,
+   "tv": 0.002145022748113394,
+   "chi2": 0.9966445436661717,
+   "bonus_consistent": true
+  }
+ ],
+ "table5": {
+  "rows": [
+   {
+    "prompt": "the cat sat on the mat and the dog sat on the mat and the cat sat on the mat and the dog sat on the",
+    "position": 1,
+    "tv_spec": 9.1552734375e-05,
+    "tv_floor": 9.1552734375e-05,
+    "top_token": " mat",
+    "top_plain": 0.999786376953125,
+    "top_spec": 0.999847412109375
+   },
+   {
+    "prompt": "the cat sat on the mat and the dog sat on the mat and the cat sat on the mat and the dog sat on the",
+    "position": 2,
+    "tv_spec": 0.020172119140625,
+    "tv_floor": 0.020843505859375,
+    "top_token": " and",
+    "top_plain": 0.62823486328125,
+    "top_spec": 0.62890625
+   },
+   {
+    "prompt": "the cat sat on the mat and the dog sat on the mat and the cat sat on the mat and the dog sat on the",
+    "position": 3,
+    "tv_spec": 0.041961669921875,
+    "tv_floor": 0.041290283203125,
+    "top_token": " the",
+    "top_plain": 0.6365966796875,
+    "top_spec": 0.637847900390625
+   },
+   {
+    "prompt": "red, green, blue, red, green, blue, red, green, blue, red, green,",
+    "position": 1,
+    "tv_spec": 0.000396728515625,
+    "tv_floor": 0.000701904296875,
+    "top_token": " blue",
+    "top_plain": 0.997528076171875,
+    "top_spec": 0.99737548828125
+   },
+   {
+    "prompt": "red, green, blue, red, green, blue, red, green, blue, red, green,",
+    "position": 2,
+    "tv_spec": 0.009613037109375,
+    "tv_floor": 0.012969970703125,
+    "top_token": ",",
+    "top_plain": 0.8187255859375,
+    "top_spec": 0.817718505859375
+   },
+   {
+    "prompt": "red, green, blue, red, green, blue, red, green, blue, red, green,",
+    "position": 3,
+    "tv_spec": 0.0291748046875,
+    "tv_floor": 0.029327392578125,
+    "top_token": " red",
+    "top_plain": 0.7740478515625,
+    "top_spec": 0.771270751953125
+   }
+  ],
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "counters": {
+   "plain1": {
+    "drafts": 0,
+    "draft_tokens": 0,
+    "accepted": 0
+   },
+   "plain2": {
+    "drafts": 0,
+    "draft_tokens": 0,
+    "accepted": 0
+   },
+   "spec": {
+    "drafts": 65505,
+    "draft_tokens": 196515,
+    "accepted": 117887
+   }
+  },
+  "wall_s": {
+   "plain1": 43.05818295478821,
+   "plain2": 43.641316413879395,
+   "spec": 46.92972731590271
+  }
+ }
+}

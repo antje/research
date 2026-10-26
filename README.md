@@ -26,10 +26,16 @@ see what moves.
 
 ## Latest
 
-<a href="posts/2026-09-28-pm-decode-wants-sram/"><img src="posts/2026-09-28-pm-decode-wants-sram/images/fun.png" alt="Even big batches leave the GPU waiting. Idle green clay chips watch one crate roll in: 0.2% busy at 1 user. Four blue chips get a line of crates, one unpacks, three still wait: 21.9% busy at 1,024 users. Qwen2.5-72B decode, BF16, 4,096-token context, one NVIDIA B200, measured." width="720"></a>
+<a href="posts/2026-10-25-pm-bad-guesser-same-answer/"><img src="posts/2026-10-25-pm-bad-guesser-same-answer/images/fun.png" alt="Cover: a grey robot on a heap of crumpled guesses throws another one away while a blue robot at a desk stamps cards calmly" width="720"></a>
 
-**[More batch won't make decode compute-bound](posts/2026-09-28-pm-decode-wants-sram/)** · September 28, 2026
+**[Why a bad guesser can't change what your model says](posts/2026-10-25-pm-bad-guesser-same-answer/)** · October 25, 2026
 
-Each user's KV cache is read again every step, so Qwen2.5-72B decode on a B200 (BF16, 4,096 tokens) never passes 116 FLOP per byte against a ridge of 281. Measured, compute use flattens at 21.9%.
+HOW IT WORKS
+
+## Earlier posts
+
+| | |
+|---|---|
+| <a href="posts/2026-09-28-pm-decode-wants-sram/"><img src="posts/2026-09-28-pm-decode-wants-sram/images/fun.png" alt="" width="200"></a> | **[More batch won't make decode compute-bound](posts/2026-09-28-pm-decode-wants-sram/)**<br>September 28, 2026<br>At 4,096 tokens of context, one decode step of a 72B dense model cannot reach a B200's ridge point at any batch size, because the KV read grows with the batch and caps arithmetic intensity at 116 FLOP/byte against a… |
 
 Spotted a mistake, or got a different result? [Open an issue](https://github.com/antje/research/issues/new).
