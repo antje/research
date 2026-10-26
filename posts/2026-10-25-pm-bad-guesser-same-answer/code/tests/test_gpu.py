@@ -1,6 +1,7 @@
 """On the B200 with the vLLM venv: vLLM's rejection-sampler kernels land on the target on a toy vocabulary, both
 with draft probabilities and on the no-draft-probabilities path, and the acceptance they report is the overlap; the
-model gives the prefixes' distributions. Skipped without CUDA, vLLM, or transformers."""
+model gives the prefixes' distributions, and every version of them is a distribution. Skipped without CUDA, vLLM, or
+transformers."""
 
 import pytest
 
@@ -66,8 +67,10 @@ def test_model_prefix_distributions():
     tok, model = T.load(DEV)
     t = T.next_token(tok, model, "import numpy as")
     assert t["top5"][0][0] == " np" and t["top5"][0][1] > 0.99
-    versions = T.probabilities(t["logits_bf16"], t["logits_fp32"])
-    for p in versions.values():
-        assert abs(p.sum().item() - 1) < 1e-2 and p.numel() == T.VOCAB
     t2 = T.next_token(tok, model, "My favorite color is")
     assert 1 < t2["entropy"] < 6
+    vs = T.versions(t2["logits_bf16"], t2["logits_fp32"])
+    for p, before in vs.values():
+        assert abs(p.double().sum().item() - 1) < 1e-6 and p.numel() == T.VOCAB
+    assert abs(vs[T.BF16_STORED][1] - 1) > 1e-5      # bf16 storage really moved the sum, so renormalizing matters here
+    assert R.distance(vs[T.BF16_STORED][0], vs[T.REFERENCE][0]) > 1e-3

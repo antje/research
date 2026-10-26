@@ -63,6 +63,22 @@ def test_draws_never_hit_zero_mass_tokens():
     assert hist[1] == 0 and hist[3] == 0 and hist.sum() == 1 << 16
 
 
+def test_rounded_vectors_are_renormalized_and_unnormalized_ones_refused():
+    from bad_guesser import target as T
+
+    p = torch.tensor([0.5, 0.3, 0.2], device=DEVICE)
+    q = torch.tensor([0.2, 0.3, 0.5], device=DEVICE)
+    rounded = p.to(torch.bfloat16).float()
+    assert rounded.double().sum().item() == 1.0009765625        # bf16 rounding alone breaks the sum
+    gen = torch.Generator(device=DEVICE).manual_seed(6)
+    with pytest.raises(AssertionError):
+        R.speculate(rounded, q, 1024, gen)                        # the rule refuses a vector that is not a distribution
+    fixed, before = T.stored_in_bf16(p)
+    assert before == 1.0009765625 and abs(fixed.double().sum().item() - 1) < 1e-6
+    o = R.speculate(fixed, q, N, gen)
+    assert R.total_variation(o.hist, fixed, N) < 0.003
+
+
 def test_float32_and_float64_arithmetic_rarely_disagree(pq):
     _, p, q = pq
     gen = torch.Generator(device=DEVICE).manual_seed(5)

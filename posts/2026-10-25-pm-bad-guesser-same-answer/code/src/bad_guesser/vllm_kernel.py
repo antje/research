@@ -1,12 +1,14 @@
-"""vLLM 0.31's own rejection sampler (vllm/v1/sample/rejection_sampler.py, the Triton kernels behind every
+"""vLLM 0.31's own rejection sampler (vllm/v1/sample/rejection_sampler.py,
+https://github.com/vllm-project/vllm/blob/main/vllm/v1/sample/rejection_sampler.py, the Triton kernels behind every
 speculative-decoding step it serves) on the same target and drafts as the torch rule.
 
 `rejection_sample` is called the way `RejectionSampler.forward` calls it: one request per row, one draft token per
 request, the target's logits in float32 (it softmaxes them itself), the draft's probabilities as a [rows, vocab]
-tensor, or None for the n-gram and greedy case where the kernel sets the draft probability to 1 (vllm-code-nodraft).
-The first output column is the verified token; the second holds the bonus token when the draft was kept and the
-placeholder -1 when it was not, which is how acceptance is counted here. Temperature is 1, so the kernel's in-place
-division of the logits leaves them unchanged and the same logits tensor serves every batch.
+tensor, or None for the n-gram and greedy case where the kernel sets the draft probability to 1. Penalties, bad words
+and logits processors are off: `forward` applies those before this call, and the serving run (served.py) tests them
+through the whole engine. The first output column is the verified token; the second holds the bonus token when the
+draft was kept and the placeholder -1 when it was not, which is how acceptance is counted here. Temperature is 1, so
+the kernel's in-place division of the logits leaves them unchanged and the same logits tensor serves every batch.
 """
 
 from __future__ import annotations

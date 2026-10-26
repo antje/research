@@ -1,8 +1,10 @@
 """Qwen3-8B's next-token distribution at a few fixed prefixes, two ways: through the model's own bf16 output head
-(what vLLM softmaxes in float32, vllm-code-follows: `raw_target_logits.to(torch.float32)` then softmax) and through
-the same final hidden state multiplied by the output head in float32. The gap between the two is the 'hardware
-numerics' the papers and vLLM's documentation name (chen-numerics, vllm-docs-lossless), and it is the same gap plain
-sampling without a drafter would see.
+(what vLLM's rejection sampler softmaxes after `raw_target_logits.to(torch.float32)`,
+https://github.com/vllm-project/vllm/blob/main/vllm/v1/sample/rejection_sampler.py) and through the same final
+hidden state multiplied by the output head in float32. The gap between the two is the 'hardware numerics' that Chen
+et al. (Accelerating Large Language Model Decoding with Speculative Sampling, https://arxiv.org/abs/2302.01318) and
+vLLM's Speculative Decoding documentation (https://docs.vllm.ai/en/latest/features/speculative_decoding.html) name,
+and it is the same gap plain sampling without a drafter would see.
 
 transformers and torch are imported inside the functions (the `gpu` extra). The weights come from the Hugging Face
 cache, offline; nothing is downloaded.
@@ -14,7 +16,7 @@ import glob
 import os
 
 MODEL = "Qwen/Qwen3-8B"
-VOCAB = 151_936  # qwen3-8b-vocab
+VOCAB = 151_936  # Qwen/Qwen3-8B config.json, vocab_size: https://huggingface.co/Qwen/Qwen3-8B/blob/main/config.json
 PREFIXES = [   # chosen for a spread of entropies, from one certain token to a wide-open continuation
     "import numpy as",
     "The capital of France is",
@@ -23,6 +25,8 @@ PREFIXES = [   # chosen for a spread of entropies, from one certain token to a w
     "My favorite color is",
     "Once upon a time, there was a",
 ]
+REFERENCE = "float32 head, float32 softmax"
+BF16_STORED = "bf16 head, probabilities stored in bf16"
 
 
 def snapshot_dir() -> str:
@@ -66,14 +70,28 @@ def next_token(tok, model, prefix: str) -> dict:
                 top5=[(tok.decode([i]), v) for v, i in zip(top.values.tolist(), top.indices.tolist())])
 
 
-def probabilities(logits_bf16, logits_fp32) -> dict:
-    """Three versions of the target: the float32 head's softmax (the reference), vLLM's path (bf16 logits widened to
-    float32, then softmax), and a softmax whose output is stored in bf16 (what a drafter emitting bf16 probabilities
-    would hand over). All returned as float32 vectors."""
+def stored_in_bf16(probs):
+    """A probability vector rounded to bf16, as a drafter or target emitting bf16 probabilities would hand it over,
+    then renormalized in float32. Rounding alone leaves a vector that no longer sums to 1 (0.5, 0.3, 0.2 rounds to a
+    vector summing to 1.0009765625), and a rule fed that vector would compare one distribution and sample another.
+    Returns the renormalized vector and the rounded vector's sum before renormalizing."""
     import torch
 
+    r = probs.to(torch.bfloat16).float()
+    s = r.double().sum().item()
+    return r / r.sum(), s
+
+
+def versions(logits_bf16, logits_fp32) -> dict:
+    """Three versions of the target, each a float32 vector summing to 1: the float32 head's softmax (the reference),
+    vLLM's path (bf16 logits widened to float32, then softmax), and that softmax stored in bf16 and renormalized.
+    Each maps to (p, the sum of p before renormalizing)."""
+    import torch
+
+    vllm_path = torch.softmax(logits_bf16.float(), -1)
+    ref = torch.softmax(logits_fp32, -1)
     return {
-        "float32 head, float32 softmax": torch.softmax(logits_fp32, -1),
-        "bf16 head, float32 softmax (vLLM's path)": torch.softmax(logits_bf16.float(), -1),
-        "bf16 head, probabilities stored in bf16": torch.softmax(logits_bf16.float(), -1).to(torch.bfloat16).float(),
+        REFERENCE: (ref / ref.sum(), ref.double().sum().item()),
+        "bf16 head, float32 softmax (vLLM's path)": (vllm_path / vllm_path.sum(), vllm_path.double().sum().item()),
+        BF16_STORED: stored_in_bf16(vllm_path),
     }
