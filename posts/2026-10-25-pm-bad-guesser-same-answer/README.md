@@ -67,6 +67,44 @@ Sample the next token thousands of times at one fixed prompt, with and without s
 
 A drafter changes your speed, never your output distribution, as long as the verifier keeps the min(1, p/q) accept and the clipped p − q refill, with p the target's distribution after temperature and top-p and q the one the draft actually sampled from. It bites because every knob that keeps more guesses than the rule allows pays for speed with the model's distribution, and no accuracy benchmark will tell you by how much.
 
+## What this means for you
+
+### For the curious non-specialist
+
+![A wrong guesser can't change the answer: guesses thrown out, a green bar at 30%, above answers changed, an empty track with a blue 0](images/aud-normie.png)
+
+Speculative decoding lets a small model guess and a big one check. The checker keeps the good guesses and refills the rest from exactly what the guesser missed, so even a guesser that loses 30% of its guesses changes zero answers.
+
+### For ML and AI engineers
+
+![Refill from the gap, not the model: rows A, B, C with the model's 50%, 30%, 20% as grey bars, the guesser's 20%, 30%, 50% as green bars, and the refill pool as one blue bar of 30% on A](images/aud-ml-engineer.png)
+
+After a rejection the checker does not resample from the model. It draws from the model's chance minus the guesser's, clipped at zero: on this walk-in that is 30% on A and nothing else, which is exactly the gap the kept guesses left.
+
+### For performance and capacity engineers
+
+![Keep rate sets speed, never the output: three guessers keep 100%, 70% and almost nothing of their guesses as green bars, each row stamped exact in blue](images/aud-perf-engineer.png)
+
+The keep rate is the overlap of the two distributions, and tokens per target pass follow it: a perfect guesser keeps everything, a uniform guess (a 1 in 151,936 chance per token over Qwen3-8B's vocabulary) keeps almost nothing. The output distribution is the same in every row.
+
+### For CUDA and hardware folks
+
+![Draft without chances: keep with the model's chance: a green bar of 20% for guess C kept, and two blue bars for the refill with C masked out, A 50% and B 30%, 80% in total](images/aud-kernel-folks.png)
+
+An n-gram or greedy draft is a one-hot q. vLLM's rejection sampler then sets the draft probability to 1, keeps the guess with probability p, and draws the recovered token from the target with the drafted token masked out. On the walk-in a guess of C is kept 20% of the time and the other 80% lands on A and B in the model's proportions.
+
+### For VCs and business readers
+
+![The guesser sets the speed, not the product: a backwards guesser keeps 70% and a perfect guesser 100% of guesses, green bars, each row tagged same answers in blue](images/aud-vc-business.png)
+
+A draft model is a speed knob. A weaker one keeps fewer guesses per pass, so the big model runs more often, and the answers it gives are the same ones it would give alone.
+
+### For analysts
+
+![FLy is faster and not exact: three bars, answers changed by the exact rule at 0 in blue, FLy's quality kept at 97.9% and its speedup from 1.19x to 1.94x on an MI355X in green](images/aud-analyst.png)
+
+vLLM now documents an exact verifier and a lossy one side by side. The standard rule changes zero answers for any draft. FLy reports speedups in all 40 primary configurations on its page (AMD MI355X, temperature 0, greedy draft) and a quality retention of 97.9% at worst over the 29 configurations scored that way, and it does not preserve the target distribution.
+
 ## Sources
 
 - The B200 run: [`code/results/b200-same-answer.md`](code/results/b200-same-answer.md) and a second run on the host's other B200 with other seeds, [`code/results/b200-run2-same-answer.md`](code/results/b200-run2-same-answer.md), each ending in its Conditions line.
