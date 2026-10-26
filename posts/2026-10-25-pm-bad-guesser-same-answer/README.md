@@ -71,7 +71,7 @@ A drafter changes your speed, never your output distribution, as long as the ver
 
 ### For the curious non-specialist
 
-![A wrong guesser can't change the answer: guesses thrown out, a green bar at 30%, above answers changed, an empty track with a blue 0](images/aud-normie.png)
+![A wrong guesser can't change the answer: guesses thrown out, a green bar at 30%, above answers changed, an empty track with a blue 0](images/aud-non-specialist.png)
 
 Speculative decoding lets a small model guess and a big one check. The checker keeps the good guesses and refills the rest from exactly what the guesser missed, so even a guesser that loses 30% of its guesses changes zero answers.
 
